@@ -1,0 +1,49 @@
+﻿Build started 2015-08-30 18:06:19.
+     1>Project "E:\Studia\GameEngineT\Swarm\Swarm\Swarm.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Swarm.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         D:\Visual Studio 2013 U2\VC\bin\CL.exe /c /IE:\Studia\GameEngineT\Swarm\\lib\glm\glm /I"E:\Studia\GameEngineT\Swarm\\lib\glfw-3.1.1\include" /I"E:\Studia\GameEngineT\Swarm\\lib\glew-1.12.0\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CameraClass.cpp GameManager.cpp GameObject.cpp InputSys.cpp Matrix3.cpp MovementCore.cpp RenderSystem.cpp ResourceManager.cpp Scene.cpp ShaderData.cpp ShaderInterface.cpp ShaderLoader.cpp Vector2.cpp Vector3.cpp Vector4.cpp VertexBuffer.cpp grid.cpp main.cpp
+         Skipping... (no relevant changes detected)
+         main.cpp
+         grid.cpp
+         VertexBuffer.cpp
+         Vector4.cpp
+         Vector3.cpp
+         Vector2.cpp
+         ShaderLoader.cpp
+         ShaderInterface.cpp
+         ShaderData.cpp
+         Scene.cpp
+         ResourceManager.cpp
+         RenderSystem.cpp
+         MovementCore.cpp
+         Matrix3.cpp
+         InputSys.cpp
+         GameObject.cpp
+         GameManager.cpp
+         CameraClass.cpp
+       Link:
+         D:\Visual Studio 2013 U2\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Studia\GameEngineT\Swarm\Debug\GameEngineT.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\Studia\GameEngineT\Swarm\\lib\glfw-3.1.1\lib-vc2013" /LIBPATH:"E:\Studia\GameEngineT\Swarm\\lib\glew-1.12.0\lib\Release\Win32" opengl32.lib glew32.lib glfw3.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Studia\GameEngineT\Swarm\Debug\GameEngineT.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Studia\GameEngineT\Swarm\Debug\GameEngineT.lib" /MACHINE:X86 Debug\CameraClass.obj
+         Debug\GameObject.obj
+         Debug\GameManager.obj
+         Debug\grid.obj
+         Debug\InputSys.obj
+         Debug\main.obj
+         Debug\Matrix3.obj
+         Debug\MovementCore.obj
+         Debug\RenderSystem.obj
+         Debug\ResourceManager.obj
+         Debug\Scene.obj
+         Debug\ShaderData.obj
+         Debug\ShaderInterface.obj
+         Debug\ShaderLoader.obj
+         Debug\Vector2.obj
+         Debug\Vector3.obj
+         Debug\Vector4.obj
+         Debug\VertexBuffer.obj
+         Swarm.vcxproj -> E:\Studia\GameEngineT\Swarm\Debug\GameEngineT.exe
+     1>Done Building Project "E:\Studia\GameEngineT\Swarm\Swarm\Swarm.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.62
