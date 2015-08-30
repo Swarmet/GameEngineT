@@ -57,12 +57,14 @@ void RenderSystem::render(std::vector<GameObject *> *gameobjectArray)
 			camera = _cameraClass->getCamera();
 
 			glLoadIdentity();
-
+		
 			gluLookAt(
 				camera->getPosition().x, camera->getPosition().y, camera->getPosition().z,
 				camera->getCamVector().x, camera->getCamVector().y, camera->getCamVector().z,
 				camera->getUpVector().x, camera->getUpVector().y, camera->getUpVector().z );
+
 			glfwSwapBuffers(_window);
+
 		}
 
 		
