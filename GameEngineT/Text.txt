@@ -1,0 +1,30 @@
+
+
+
+
+
+
+
+	
+					Cel: Mini gra w której rozudowujemy bunkier. 1 + 4 obiekty 
+
+					- Korytasz 
+					- Winda					
+					- Mieszkalnie		- 5 p 
+					- Kuchnia			- 5 p - 5 wod	+5 ¿
+					- elektrownia		- 5 w + 15p
+					- wodoci¹gi			- 5 p +	10w
+
+
+					budujemy na siadce 
+
+
+					-	-	0	w	e	0	-
+					-	-	-	?	-	-	-	
+					-	-	-	-	-	-	-
+					
+					Grid 
+					
+					20 x 30
+					
+					Tablica 	
