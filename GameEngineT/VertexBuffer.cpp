@@ -29,7 +29,7 @@ VertexBuffer::VertexBuffer(const GLvoid *data,
 {
     glGenBuffers(1, &_vertexBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBufferID);
-    glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW);
 }
 
 VertexBuffer::~VertexBuffer()
@@ -40,23 +40,17 @@ VertexBuffer::~VertexBuffer()
 
 void VertexBuffer::configureVertexAttributes()
 {
-		
-
-		GLuint vao = _shader->getProgramHandle();
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
-		glBindBuffer(GL_ARRAY_BUFFER, _vertexBufferID);
-
+	glBindBuffer(GL_ARRAY_BUFFER, _vertexBufferID);
+	if (_shader->get_aPositionVertex() != -1) {
 		glEnableVertexAttribArray(_shader->get_aPositionVertex());
 		glVertexAttribPointer(_shader->get_aPositionVertex(), 3, GL_FLOAT, GL_FALSE, _stride, _positionOffset);
+	}
 
-		glVertexAttribPointer(_shader->get_aPositionNormal(), 3, GL_FLOAT, GL_FALSE, _stride, _normalOffset);
+	if (_shader->get_aPositionNormal() != -1) {
 		glEnableVertexAttribArray(_shader->get_aPositionNormal());
-	
-	
-
-
-
+		glVertexAttribPointer(_shader->get_aPositionNormal(), 3, GL_FLOAT, GL_FALSE, _stride, _normalOffset);
+	}
+		
 }
 
 void VertexBuffer::renderVertexBuffer()

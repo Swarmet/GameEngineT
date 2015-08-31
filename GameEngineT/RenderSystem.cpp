@@ -12,28 +12,42 @@ RenderSystem::~RenderSystem()
 	
 }
 
+
 void RenderSystem::render(std::vector<GameObject *> *gameobjectArray)
 {
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
+	camera = _cameraClass->getCamera();
+
+	glLoadIdentity();
 
 	for (std::vector<GameObject *>::iterator iterator = gameobjectArray->begin(); iterator != gameobjectArray->end(); ++iterator)
 	{
 		GameObject *gameobject = *iterator;
 		
+
 		if (gameobject->getVertexBuffer() != NULL){
-			
+
+			glPushMatrix();
+
 			glUseProgram(gameobject->getVertexBuffer()->getShader()->getProgramHandle()); 
+
 			
+
+			gluLookAt(
+				camera->getPosition().x, camera->getPosition().y, camera->getPosition().z,
+				camera->getPosition().x, camera->getPosition().y, camera->getCamVector().z,
+				camera->getUpVector().x, camera->getUpVector().y, camera->getUpVector().z);
 			
 			glTranslatef(gameobject->getPosition().x, gameobject->getPosition().y, gameobject->getPosition().z);
+
 			glRotatef(gameobject->getRotation().x, 0.0f, 0.0f, 1.0f);
 			glRotatef(gameobject->getRotation().y, 0.0f, 1.0f, 0.0f);
 			glRotatef(gameobject->getRotation().z, 1.0f, 0.0f, 0.0f);
 
 			glScalef(gameobject->getScale().x, gameobject->getScale().y, gameobject->getScale().z);
-
+			
 			glUniform4f((gameobject->getVertexBuffer()->getShader())->get_uColor(),
 				(gameobject->getVertexBuffer()->getShaderData())->get_uColorValue().x,
 				(gameobject->getVertexBuffer()->getShaderData())->get_uColorValue().y,
@@ -45,37 +59,23 @@ void RenderSystem::render(std::vector<GameObject *> *gameobjectArray)
 				(gameobject->getVertexBuffer()->getShaderData())->get_uLightPosition().x,
 				(gameobject->getVertexBuffer()->getShaderData())->get_uLightPosition().y,
 				(gameobject->getVertexBuffer()->getShaderData())->get_uLightPosition().z);
-
+			
 
 
 			gameobject->getVertexBuffer()->configureVertexAttributes();
 			gameobject->getVertexBuffer()->renderVertexBuffer();
-
+			glPopMatrix();
 		}
-		else {
-
-			camera = _cameraClass->getCamera();
-
-			glLoadIdentity();
-		
-			gluLookAt(
-				camera->getPosition().x, camera->getPosition().y, camera->getPosition().z,
-				camera->getCamVector().x, camera->getCamVector().y, camera->getCamVector().z,
-				camera->getUpVector().x, camera->getUpVector().y, camera->getUpVector().z );
-
-			glfwSwapBuffers(_window);
-
-		}
-
-		
-		glfwPollEvents();
 	}
+
+	glfwSwapBuffers(_window);
+	glfwPollEvents();
 	
 }
 
 RenderSystem& RenderSystem::getRenderSystem()
 {
-    static RenderSystem *renderSystem = NULL;
+	static RenderSystem *renderSystem = NULL;
     
     if (renderSystem == NULL) {
         renderSystem = new RenderSystem();
@@ -88,11 +88,13 @@ RenderSystem& RenderSystem::getRenderSystem()
         glMatrixMode(GL_MODELVIEW);
         
 		glEnable(GL_CULL_FACE);
-		
+	
 		
     }
     
+	
     return *renderSystem;
+
 }
 
 void RenderSystem::destroyRenderSystem()

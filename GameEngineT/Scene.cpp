@@ -14,28 +14,32 @@ Scene::Scene()
 	_children = new std::vector<GameObject *>();
 	_resourceManager = &ResourceManager::getResourceManage();
 
-	Vector3 pos = makeVector3(.0f, .0f, .0f);
-
-	
-	GameObject *socketa = new GameObject("socket", _resourceManager->getVertexBufferArray()->at(0), pos );
-	socketa->setCamVector(normalizeVector3(makeVector3(0.0f, 0.0f, -1.0f)));
-
-	InputSys *inputsystem = &InputSys::getInputSys();
-	inputsystem->setCurrentSelected(socketa);
-
-	_children->push_back(socketa);
-
-	GameObject *socketb = new GameObject("socket", _resourceManager->getVertexBufferArray()->at(1), makeVector3(1.8f, 1.0f, 0.0f));
-	socketb->setCamVector(normalizeVector3(makeVector3(0.0f, 0.0f, -1.0f)));
+	Vector3 pos = makeVector3(0.0f, 0.0f, 0.0f);
+	GameObject *socketb = new GameObject("socket", _resourceManager->getVertexBufferArray()->at(0), makeVector3(-5.0f, .0f, .0f));
+	socketb->setCamVector(normalizeVector3(makeVector3(0.0f, 0.0f, -5.0f)));
 	_children->push_back(socketb);
-	
-	GameObject *socketc = new GameObject("socket", _resourceManager->getVertexBufferArray()->at(2), makeVector3(1.8f,1.0f,0.0f));
-	socketc->setCamVector(normalizeVector3(makeVector3(0.0f, 0.0f, -1.0f)));
-	_children->push_back(socketc);
+	for (int i = 0; i < 100; ++i) {
 
+		pos.x = 0.0f;
+		for (int j = 0; j < 20; ++j){
+			GameObject *socketa = new GameObject("socket", _resourceManager->getVertexBufferArray()->at(0), pos);
+			socketa->setCamVector(normalizeVector3(makeVector3(0.0f, 0.0f, -1.0f)));
+			_children->push_back(socketa);
+
+			pos.x += 1.2f;
+		}
+
+		pos.y += 1.2f;
+	}
 	
-	GameObject *camera = new GameObject("camera", NULL, makeVector3(3.0f, 3.0f, 15.0f));
-	camera->setCamVector(normalizeVector3(makeVector3(0.0f, 0.0f, -1.0f)));
+
+
+
+	GameObject *camera = new GameObject("camera", NULL, makeVector3(0.0f, 0.0f, 15.0f));
+	camera->setCamVector(makeVector3(0.0f, 0.0f, -16.0f));
+	
+	InputSys *inputsystem = &InputSys::getInputSys();
+	inputsystem->setCurrentSelected(socketb);
 
 	CameraClass *_cameraClass = &CameraClass::getCameraClass();
 	_cameraClass->setCamera(camera);

@@ -29,17 +29,18 @@ void GameManager::Loop()
 		float nowTime = glfwGetTime();
 		deltaTime += (nowTime - prevTime) * uFPS;
 		prevTime = nowTime;
-		_inputsystem->update();
+		
 		while (deltaTime >= 1.0f) {
 			
 			_running = !glfwWindowShouldClose(_window);
-
+			_inputsystem->update();
 			_movement->update(scene->getChildren());
 			
 
 			--deltaTime;
 
 		}
+
 		_renderSystem->render(scene->getChildren());
 	}
 

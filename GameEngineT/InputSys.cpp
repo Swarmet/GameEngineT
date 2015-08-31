@@ -2,7 +2,7 @@
 
 void InputSys::keyCallback(GLFWwindow *widnow, int key, int scancode, int action, int mods){
 
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
+	/*if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
 		if (GLFW_CURSOR_DISABLED == glfwGetInputMode(glfwGetCurrentContext(), GLFW_CURSOR)){
 
 			glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -12,7 +12,7 @@ void InputSys::keyCallback(GLFWwindow *widnow, int key, int scancode, int action
 			glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		}
 	}
-
+	*/
 	Vector2 currentMousePosition;
 	glfwGetCursorPos(_window, &currentMousePosition.x, &currentMousePosition.y);
 	std::cout << "test" << scancode << std::endl;
@@ -32,7 +32,7 @@ InputSys& InputSys::getInputSys(){
 	if (!inputsys){
 
 		glfwSetKeyCallback(glfwGetCurrentContext(), *keyCallbackFun);
-		glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		inputsys = new InputSys();
 
 	}
@@ -51,37 +51,38 @@ void InputSys::setCurrentSelected(GameObject *newSelected){
 
 void InputSys::update(){
 
-	if (_currentSelected != NULL && glfwGetInputMode(glfwGetCurrentContext(), GLFW_CURSOR) == GLFW_CURSOR_DISABLED){
+	if (_currentSelected != NULL && glfwGetInputMode(glfwGetCurrentContext(), GLFW_CURSOR) == GLFW_CURSOR_NORMAL){
 
 		if (glfwGetKey(_window, GLFW_KEY_W)){
 			//_currentSelected->setPosition(addVector3(_currentSelected->getPosition(), scalerMultiplyVector3(_CamVector, 0.07f)));
-			_currentSelected->setPosition(subtractVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(1.0f, 0.0f, 0.0f)), 0.007f)));
+			_currentSelected->setPosition(subtractVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(1.0f, 0.0f, 0.0f)), 0.07f)));
 		}
 
 		if (glfwGetKey(_window, GLFW_KEY_S)){
 			//_currentSelected->setPosition(subtractVector3(_currentSelected->getPosition(), scalerMultiplyVector3(_CamVector, 0.07f)));
-			_currentSelected->setPosition( addVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(1.0f, 0.0f, 0.0f)), 0.007f)));
+			_currentSelected->setPosition( addVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(1.0f, 0.0f, 0.0f)), 0.07f)));
 		}
 
 		if (glfwGetKey(_window, GLFW_KEY_A)){
-			_currentSelected->setPosition(subtractVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(0.0f, 1.0f, 0.0f)), 0.007f)));
+			_currentSelected->setPosition(subtractVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(0.0f, 1.0f, 0.0f)), 0.07f)));
 
 		}
 
 		if (glfwGetKey(_window, GLFW_KEY_D)){
-			_currentSelected->setPosition(addVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(0.0f, 1.0f, 0.0f)), 0.007f)));
+			_currentSelected->setPosition(addVector3(_currentSelected->getPosition(), scalerMultiplyVector3(crossProductVector3(_CamVector, makeVector3(0.0f, 1.0f, 0.0f)), 0.07f)));
 
 		}
-		/*
+	
 		Vector2 currentMousePosition;
 		glfwGetCursorPos(_window, &currentMousePosition.x, &currentMousePosition.y);
 
-		_CamVector = transformVector3(_CamVector, makeRotationMatrix3((3.14f / (4.0f*45.0f))*-(currentMousePosition.x - _lastMousePosition.x), 1.0f, 0.0f, 0.0f));
+		//_CamVector = transformVector3(_CamVector, makeRotationMatrix3((3.14f / (4.0f*45.0f))*-(currentMousePosition.x - _lastMousePosition.x), 1.0f, 0.0f, 0.0f));
+
+		//std::cout << currentMousePosition.x << ", " << currentMousePosition.y  << std::endl;
 
 		glfwGetCursorPos(_window, &_lastMousePosition.x, &_lastMousePosition.y);
 
-		*/
-		_currentSelected->setCamVector(addVector3(_currentSelected->getPosition(), _CamVector));
+		//_currentSelected->setCamVector(addVector3(_currentSelected->getPosition(), _CamVector));
 	
 	}
 
